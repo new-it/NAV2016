@@ -101,7 +101,7 @@
                   "sourceAddressPrefix": "*",
                   "destinationAddressPrefix": "*",
                   "access": "Allow",
-                  "priority": 100,
+                  "priority": 200,
                   "direction": "Inbound"
                 }
               },
@@ -115,7 +115,7 @@
                   "sourceAddressPrefix": "*",
                   "destinationAddressPrefix": "*",
                   "access": "Allow",
-                  "priority": 100,
+                  "priority": 300,
                   "direction": "Inbound"
                 }
               },
@@ -129,7 +129,7 @@
                   "sourceAddressPrefix": "*",
                   "destinationAddressPrefix": "*",
                   "access": "Allow",
-                  "priority": 100,
+                  "priority": 400,
                   "direction": "Inbound"
                 }
               },
@@ -143,7 +143,7 @@
                   "sourceAddressPrefix": "*",
                   "destinationAddressPrefix": "*",
                   "access": "Allow",
-                  "priority": 100,
+                  "priority": 500,
                   "direction": "Inbound"
                 }
               },
@@ -157,7 +157,7 @@
                   "sourceAddressPrefix": "*",
                   "destinationAddressPrefix": "*",
                   "access": "Allow",
-                  "priority": 100,
+                  "priority": 600,
                   "direction": "Inbound"
                 }
               }
@@ -256,350 +256,7 @@
                     ]
                 }
             }
-        },
-        {
-          "name": "[concat(parameters('vmName'), '/agent')]",
-          "type": "Microsoft.Compute/virtualMachines/diagnosticSettings",
-          "apiVersion": "2014-04-01",
-          "location": "[parameters('location')]",
-          "dependsOn": [
-            "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'))]"
-          ],
-          "properties": {
-            "publicConfiguration": {
-              "odata.type": "Microsoft.Azure.Management.Insights.Models.PublicMonitoringConfiguration",
-              "diagnosticMonitorConfiguration": {
-                "overallQuotaInMB": 4096,
-                "metrics": {
-                  "resourceId": "[resourceId('Microsoft.Compute/virtualMachines', parameters('vmName'))]",
-                  "aggregations": [
-                    {
-                      "scheduledTransferPeriod": "PT1H"
-                    },
-                    {
-                      "scheduledTransferPeriod": "PT1M"
-                    }
-                  ]
-                },
-                "diagnosticInfrastructureLogs": {
-                  "scheduledTransferLogLevelFilter": "Warning",
-                  "scheduledTransferPeriod": "PT1M"
-                },
-                "performanceCounters": {
-                  "counters": [
-                    {
-                      "annotations": [
-                        {
-                          "value": "CPU utilization",
-                          "locale": "en-us"
-                        }
-                      ],
-                      "counterSpecifier": "\\Processor(_Total)\\% Processor Time",
-                      "sampleRate": "PT15S",
-                      "unit": "Percent"
-                    },
-                    {
-                      "annotations": [
-                        {
-                          "value": "CPU privileged time",
-                          "locale": "en-us"
-                        }
-                      ],
-                      "counterSpecifier": "\\Processor(_Total)\\% Privileged Time",
-                      "sampleRate": "PT15S",
-                      "unit": "Percent"
-                    },
-                    {
-                      "annotations": [
-                        {
-                          "value": "CPU user time",
-                          "locale": "en-us"
-                        }
-                      ],
-                      "counterSpecifier": "\\Processor(_Total)\\% User Time",
-                      "sampleRate": "PT15S",
-                      "unit": "Percent"
-                    },
-                    {
-                      "annotations": [
-                        {
-                          "value": "CPU frequency",
-                          "locale": "en-us"
-                        }
-                      ],
-                      "counterSpecifier": "\\Processor Information(_Total)\\Processor Frequency",
-                      "sampleRate": "PT15S",
-                      "unit": "Count"
-                    },
-                    {
-                      "annotations": [
-                        {
-                          "value": "Processes",
-                          "locale": "en-us"
-                        }
-                      ],
-                      "counterSpecifier": "\\System\\Processes",
-                      "sampleRate": "PT15S",
-                      "unit": "Count"
-                    },
-                    {
-                      "annotations": [
-                        {
-                          "value": "Threads",
-                          "locale": "en-us"
-                        }
-                      ],
-                      "counterSpecifier": "\\Process(_Total)\\Thread Count",
-                      "sampleRate": "PT15S",
-                      "unit": "Count"
-                    },
-                    {
-                      "annotations": [
-                        {
-                          "value": "Handles",
-                          "locale": "en-us"
-                        }
-                      ],
-                      "counterSpecifier": "\\Process(_Total)\\Handle Count",
-                      "sampleRate": "PT15S",
-                      "unit": "Count"
-                    },
-                    {
-                      "annotations": [
-                        {
-                          "value": "Memory usage",
-                          "locale": "en-us"
-                        }
-                      ],
-                      "counterSpecifier": "\\Memory\\% Committed Bytes In Use",
-                      "sampleRate": "PT15S",
-                      "unit": "Percent"
-                    },
-                    {
-                      "annotations": [
-                        {
-                          "value": "Memory available",
-                          "locale": "en-us"
-                        }
-                      ],
-                      "counterSpecifier": "\\Memory\\Available Bytes",
-                      "sampleRate": "PT15S",
-                      "unit": "Bytes"
-                    },
-                    {
-                      "annotations": [
-                        {
-                          "value": "Memory committed",
-                          "locale": "en-us"
-                        }
-                      ],
-                      "counterSpecifier": "\\Memory\\Committed Bytes",
-                      "sampleRate": "PT15S",
-                      "unit": "Bytes"
-                    },
-                    {
-                      "annotations": [
-                        {
-                          "value": "Memory commit limit",
-                          "locale": "en-us"
-                        }
-                      ],
-                      "counterSpecifier": "\\Memory\\Commit Limit",
-                      "sampleRate": "PT15S",
-                      "unit": "Bytes"
-                    },
-                    {
-                      "annotations": [
-                        {
-                          "value": "Memory paged pool",
-                          "locale": "en-us"
-                        }
-                      ],
-                      "counterSpecifier": "\\Memory\\Pool Paged Bytes",
-                      "sampleRate": "PT15S",
-                      "unit": "Bytes"
-                    },
-                    {
-                      "annotations": [
-                        {
-                          "value": "Memory non-paged pool",
-                          "locale": "en-us"
-                        }
-                      ],
-                      "counterSpecifier": "\\Memory\\Pool Nonpaged Bytes",
-                      "sampleRate": "PT15S",
-                      "unit": "Bytes"
-                    },
-                    {
-                      "annotations": [
-                        {
-                          "value": "Disk active time",
-                          "locale": "en-us"
-                        }
-                      ],
-                      "counterSpecifier": "\\PhysicalDisk(_Total)\\% Disk Time",
-                      "sampleRate": "PT15S",
-                      "unit": "Percent"
-                    },
-                    {
-                      "annotations": [
-                        {
-                          "value": "Disk active read time",
-                          "locale": "en-us"
-                        }
-                      ],
-                      "counterSpecifier": "\\PhysicalDisk(_Total)\\% Disk Read Time",
-                      "sampleRate": "PT15S",
-                      "unit": "Percent"
-                    },
-                    {
-                      "annotations": [
-                        {
-                          "value": "Disk active write time",
-                          "locale": "en-us"
-                        }
-                      ],
-                      "counterSpecifier": "\\PhysicalDisk(_Total)\\% Disk Write Time",
-                      "sampleRate": "PT15S",
-                      "unit": "Percent"
-                    },
-                    {
-                      "annotations": [
-                        {
-                          "value": "Disk operations",
-                          "locale": "en-us"
-                        }
-                      ],
-                      "counterSpecifier": "\\PhysicalDisk(_Total)\\Disk Transfers/sec",
-                      "sampleRate": "PT15S",
-                      "unit": "CountPerSecond"
-                    },
-                    {
-                      "annotations": [
-                        {
-                          "value": "Disk read operations",
-                          "locale": "en-us"
-                        }
-                      ],
-                      "counterSpecifier": "\\PhysicalDisk(_Total)\\Disk Reads/sec",
-                      "sampleRate": "PT15S",
-                      "unit": "CountPerSecond"
-                    },
-                    {
-                      "annotations": [
-                        {
-                          "value": "Disk write operations",
-                          "locale": "en-us"
-                        }
-                      ],
-                      "counterSpecifier": "\\PhysicalDisk(_Total)\\Disk Writes/sec",
-                      "sampleRate": "PT15S",
-                      "unit": "CountPerSecond"
-                    },
-                    {
-                      "annotations": [
-                        {
-                          "value": "Disk speed",
-                          "locale": "en-us"
-                        }
-                      ],
-                      "counterSpecifier": "\\PhysicalDisk(_Total)\\Disk Bytes/sec",
-                      "sampleRate": "PT15S",
-                      "unit": "BytesPerSecond"
-                    },
-                    {
-                      "annotations": [
-                        {
-                          "value": "Disk read speed",
-                          "locale": "en-us"
-                        }
-                      ],
-                      "counterSpecifier": "\\PhysicalDisk(_Total)\\Disk Read Bytes/sec",
-                      "sampleRate": "PT15S",
-                      "unit": "BytesPerSecond"
-                    },
-                    {
-                      "annotations": [
-                        {
-                          "value": "Disk write speed",
-                          "locale": "en-us"
-                        }
-                      ],
-                      "counterSpecifier": "\\PhysicalDisk(_Total)\\Disk Write Bytes/sec",
-                      "sampleRate": "PT15S",
-                      "unit": "BytesPerSecond"
-                    },
-                    {
-                      "annotations": [
-                        {
-                          "value": "Disk average queue length",
-                          "locale": "en-us"
-                        }
-                      ],
-                      "counterSpecifier": "\\PhysicalDisk(_Total)\\Avg. Disk Queue Length",
-                      "sampleRate": "PT15S",
-                      "unit": "Count"
-                    },
-                    {
-                      "annotations": [
-                        {
-                          "value": "Disk average read queue length",
-                          "locale": "en-us"
-                        }
-                      ],
-                      "counterSpecifier": "\\PhysicalDisk(_Total)\\Avg. Disk Read Queue Length",
-                      "sampleRate": "PT15S",
-                      "unit": "Count"
-                    },
-                    {
-                      "annotations": [
-                        {
-                          "value": "Disk average write queue length",
-                          "locale": "en-us"
-                        }
-                      ],
-                      "counterSpecifier": "\\PhysicalDisk(_Total)\\Avg. Disk Write Queue Length",
-                      "sampleRate": "PT15S",
-                      "unit": "Count"
-                    },
-                    {
-                      "annotations": [
-                        {
-                          "value": "Disk free space (percentage)",
-                          "locale": "en-us"
-                        }
-                      ],
-                      "counterSpecifier": "\\LogicalDisk(_Total)\\% Free Space",
-                      "sampleRate": "PT15S",
-                      "unit": "Percent"
-                    },
-                    {
-                      "annotations": [
-                        {
-                          "value": "Disk free space (MB)",
-                          "locale": "en-us"
-                        }
-                      ],
-                      "counterSpecifier": "\\LogicalDisk(_Total)\\Free Megabytes",
-                      "sampleRate": "PT15S",
-                      "unit": "Count"
-                    }
-                  ],
-                  "scheduledTransferPeriod": "PT1M"
-                },
-                "windowsEventLog": {
-                  "dataSources": [
-                    "Application!*[System[(Level = 1 or Level = 2)]]",
-                    "Security!*[System[(Level = 1 or Level = 2)]",
-                    "System!*[System[(Level = 1 or Level = 2)]]"
-                  ],
-                  "scheduledTransferPeriod": "PT1M"
-                }
-              },
-              "storageAccount": "[parameters('newStorageAccountName')]"
-            }
-          }
-		}
+        }
 	]
 }
 
