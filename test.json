@@ -80,7 +80,7 @@
               {
                 "name": "HTTP",
                 "properties": {
-                  "description": "Http Access",
+                  "description": "Http access",
                   "protocol": "Tcp",
                   "sourcePortRange": "80",
                   "destinationPortRange": "80",
@@ -106,7 +106,7 @@
                 }
               },
               {
-                "name": "Client,
+                "name": "Client",
                 "properties": {
                   "description": "Access for Windows Client",
                   "protocol": "Tcp",
