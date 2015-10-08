@@ -34,7 +34,7 @@
         "storageAccountType" : "Standard_LRS",
         "vmStorageAccountContainerName" : "vhds",
         "publicIPAddressName" : "PublicIP",
-        "newStorageAccountName" : "[tolower(parameters('vmName'))]",
+        "newStorageAccountName" : "Storage",
         "dnsName" : "[tolower(parameters('vmName'))]",
         "OSDiskName" : "[tolower(parameters('vmName'))]",
         "vmSize" : "Standard_D2",
