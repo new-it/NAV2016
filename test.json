@@ -20,7 +20,7 @@
             "type": "string",
             "defaultValue": "vmadmin",
             "metadata": {
-                "Description": "Specify VM Admin user name"
+                "Description": "Specify VM Admin user name 123"
             }
         },
         "vmAdminPassword": {
